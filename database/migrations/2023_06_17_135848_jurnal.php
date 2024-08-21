@@ -14,7 +14,7 @@ class Jurnal extends Migration
     public function up()
     {
         Schema::create('jurnal', function (Blueprint $table){
-            $table->string('no_jurnal',15);
+            $table->string('no_jurnal');
             $table->text('keterangan');
             $table->date('tgl_jurnal');
             $table->string('no_akun',10);

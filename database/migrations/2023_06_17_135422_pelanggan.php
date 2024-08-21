@@ -14,8 +14,8 @@ class Pelanggan extends Migration
     public function up()
     {
         Schema::create('pelanggan', function (Blueprint $table) {
-            $table->string('kd_pel', 10)->primary();
-            $table->string('nm_pel', 25);
+            $table->string('kd_pel')->primary();
+            $table->string('nm_pel');
             $table->string('telepon',15);
         });
     }

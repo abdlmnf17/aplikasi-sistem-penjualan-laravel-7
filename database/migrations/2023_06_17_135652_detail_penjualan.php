@@ -14,7 +14,7 @@ class DetailPenjualan extends Migration
     public function up()
     {
         Schema::create('detail_penjualan', function (Blueprint $table){
-            $table->string('no_jual',15);
+            $table->string('no_jual');
             $table->string('kd_mnu',10);
             $table->integer('qty_jual');
             $table->integer('sub_jual');

@@ -14,10 +14,10 @@ class Pemesanan extends Migration
     public function up()
     {
         Schema::create('pemesanan', function (Blueprint $table){
-            $table->string('no_pesan',15)->primary();
+            $table->string('no_pesan')->primary();
             $table->date('tgl_pesan');
             $table->integer('total');
-            $table->string('kd_pel',10);
+            $table->string('kd_pel');
             });
     }
 

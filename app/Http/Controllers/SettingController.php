@@ -28,7 +28,7 @@ class SettingController extends Controller
             $input['no_akun'] = $akun[$key];
             Setting::where('id_setting', $kode[$key])->update($input);
         }
-        Alert::warning('Pesan ', 'Setting Akun telah dilakukan ');
+        Alert::success('Pesan ', 'Setting Akun telah dilakukan ');
         return redirect('setting');
     }
 

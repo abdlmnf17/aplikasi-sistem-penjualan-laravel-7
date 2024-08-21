@@ -14,9 +14,9 @@ class Setting extends Migration
     public function up()
     {
         Schema::create('setting', function (Blueprint $table){
-            $table->string('id_setting',10)->primary();
-            $table->string('no_akun',5);
-            $table->string('nama_transaksi',20);
+            $table->string('id_setting')->primary();
+            $table->string('no_akun');
+            $table->string('nama_transaksi');
             });
     }
 

@@ -79,8 +79,9 @@ class PelangganController extends Controller
         $pelanggan = \App\Pelanggan::findOrFail($id);
         $pelanggan->kd_pel = $request->get('addkd_pel');
         $pelanggan->nm_pel = $request->get('addnm_pel');
-        $pelanggan->telepon = $request->get('telepon');
+        $pelanggan->telepon = $request->get('addtelepon');
         $pelanggan->save();
+        Alert::success('Pesan ', 'Data berhasil disimpan');
         return redirect()->route('pelanggan.index');
     }
 

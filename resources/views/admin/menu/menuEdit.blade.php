@@ -1,31 +1,38 @@
 @extends('layouts.layout')
+
 @section('content')
-<form action="{{route('menu.update', [$menu->kd_mnu])}}" method="POST">
-          @csrf
-          <input type="hidden" name="_method" value="PUT">
-          <fieldset>
-                    <legend>Ubah Data Menu</legend>
-                    <div class="form-group row">
-                              <div class="col-md-5">
-                                        <label for="addkdmnu">Kode Menu</label>
-                                        <input class="form-control" type="text" name="addkdmnu" value="{{$menu->kd_mnu}}" readonly>
-                              </div>
-                              <div class="col-md-5">
-                                        <label for="addnmmnu">Nama Menu</label>
-                                        <input id="addnmmnu" type="text" name="addnmmnu" class="form-control" value="{{$menu->nm_mnu}}" required>
-                              </div>
+    <div class="container">
+        <!-- Update Form Card -->
+        <div class="card mx-auto" style="max-width: 600px;">
+            <div class="card-header">
+                <h5 class="card-title">Ubah Data Menu</h5>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('menu.update', [$menu->kd_mnu]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="form-group">
+                        <label for="addkdmnu">Kode Menu</label>
+                        <input type="text" id="addkdmnu" name="addkdmnu" class="form-control" value="{{ $menu->kd_mnu }}" readonly>
                     </div>
-                    <div class="form-group row">
-                              <div class="col-md-5">
-                                        <label for="Harga">Harga</label>
-                                        <input id="addharga" type="text" name="addharga" class="form-control" value="{{$menu->harga}}" required>
-                              </div>
+
+                    <div class="form-group">
+                        <label for="addnmmnu">Nama Menu</label>
+                        <input type="text" id="addnmmnu" name="addnmmnu" class="form-control" value="{{ $menu->nm_mnu }}" required>
                     </div>
-          </fieldset>
-          <div class="col-md-10">
-                    <input type="submit" class="btn btn-success btn-send" value="Update">
-                    <a href="{{ route('menu.index') }}"><input type="Button" class="btn btn-primary btn-send" value="Kembali"></a>
-          </div>
-          <hr>
-</form>
+
+                    <div class="form-group">
+                        <label for="addharga">Harga</label>
+                        <input type="number" id="addharga" name="addharga" class="form-control" value="{{ $menu->harga }}" required>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a href="{{ route('menu.index') }}" class="btn btn-primary">Kembali</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

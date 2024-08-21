@@ -1,31 +1,50 @@
 @extends('layouts.layout')
+
 @section('content')
-@include('sweetalert::alert')
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-secondary-800">Setting Akun untuk transaksi </h1>
-</div>
-<hr>
-<form action="/setting/simpan" method="POST">
-          @csrf
-          @foreach ($setting as $stg)
-          <div class="row col-sm-6">
-                    <div class="col-sm">
-                              <input type="hidden" name="kode[]" value="{{ $stg->id_setting }}">
-                              <label for="exampleFormControlInput1">Transaksi {{ $stg->nama_transaksi}} </label>
-                    </div>
-                    <div class="col-sm">
-                              <label for="exampleFormControlInput1">{{ $stg->no_akun }}</label>
-                    </div>
-                    <div class="col-sm">
-                              <select name="akun[]" id="pell select2" class="form-control" required width="100%">
+    @include('sweetalert::alert')
+
+    <div class="container">
+        <!-- Page Heading -->
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-secondary">Setting Akun untuk Transaksi</h1>
+        </div>
+
+        <!-- Form Card -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form action="/setting/simpan" method="POST">
+                    @csrf
+
+                    @foreach ($setting as $stg)
+                        <div class="row mb-3">
+                            <input type="hidden" name="kode[]" value="{{ $stg->id_setting }}">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="transaksi_{{ $stg->id_setting }}">Transaksi {{ $stg->nama_transaksi }}</label>
+                                    <input type="text" class="form-control" value="{{ $stg->no_akun }}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="akun_{{ $stg->id_setting }}">Pilih Akun</label>
+                                    <select name="akun[]" id="akun_{{ $stg->id_setting }}" class="form-control" required>
                                         <option value="">Pilih Akun</option>
                                         @foreach ($akun as $akn)
-                                        <option value="{{ $akn->no_akun }}">{{ $akn->no_akun }} - {{ $akn->nm_akun }} </option>
+                                            <option value="{{ $akn->no_akun }}">{{ $akn->no_akun }} - {{ $akn->nm_akun }}</option>
                                         @endforeach
-                              </select>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Update Setting</button>
                     </div>
-          </div>
-          @endforeach
-          <input type="submit" class="btn btn-primary btn-send" value="Update Setting">
-</form>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -38,6 +38,7 @@ class AkunController extends Controller
         $tambah_akun->no_akun = $request->addnoakun;
         $tambah_akun->nm_akun = $request->addnmakun;
         $tambah_akun->save(); // method
+        Alert::success('Pesan ', 'Data berhasil disimpan');
         return redirect('/akun'); // prosedur
     }
 
@@ -60,6 +61,7 @@ class AkunController extends Controller
     public function edit($id)
     {
         $akun_edit = \App\Akun::findOrFail($id);
+
         return view('admin.akun.edit', ['akun' => $akun_edit]);
     }
 

@@ -14,11 +14,11 @@ class Penjualan extends Migration
     public function up()
     {
         Schema::create('penjualan', function (Blueprint $table){
-            $table->string('no_jual',15)->primary();
+            $table->string('no_jual')->primary();
             $table->date('tgl_jual');
-            $table->string('no_faktur',15);
+            $table->string('no_faktur');
             $table->integer('total_jual');
-            $table->string('no_pesan',15);
+            $table->string('no_pesan');
             });
     }
 

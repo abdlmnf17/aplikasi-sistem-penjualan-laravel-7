@@ -14,11 +14,11 @@ class menu extends Migration
     public function up()
     {
         Schema::create('menu', function (Blueprint $table){
-            $table->string('kd_mnu',10)->primary();
-            $table->string('nm_mnu',20);
+            $table->string('kd_mnu')->primary();
+            $table->string('nm_mnu');
             $table->integer('harga');
             });
-    
+
     }
 
     /**

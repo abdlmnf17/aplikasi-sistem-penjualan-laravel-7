@@ -5,16 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Sate Maranggi Si Bungsu">
+    <meta name="author" content="SIA">
 
     <title>Beranda</title>
 
-    <link href="{{ asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="{{ asset('asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link href="{{ asset('asset/css/sb-admin-2.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('asset/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
 </head>
@@ -25,13 +27,13 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-primary text-light sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-info text-light sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-0">
                 </div>
-                <div class="sidebar-brand-text mx-2">SATE MARANGGI SI BUNGSU</div>
+                <img src="{{ asset('/asset/img/sate.png')}}" width="100" height="40">
             </a>
 
             <!-- Divider -->
@@ -49,56 +51,62 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 @role('admin')
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder-open"></i>
-                    <span>Hak Akses</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-light py-2 collapse-inner rounded">
-                        <a class="collapse-item fas fa-arrow-circle-right" href="/user"> Master User</a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                        aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-folder-open"></i>
+                        <span>Hak Akses</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-light py-2 collapse-inner rounded">
+                            <a class="collapse-item " href="/user"> Master User</a>
+                        </div>
                     </div>
-                </div>
                 @endrole
             </li>
             <li class="nav-item">
                 @role('user')
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder-open"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-light py-2 collapse-inner rounded">
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{route('menu.index')}}"> Master Menu</a>
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{route('pelanggan.index')}}"> Master Pelanggan</a>
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{route('akun.index')}}"> Master Akun</a>
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{route('setting.transaksi')}}"> Master Setting Akun</a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                        aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-server"></i>
+                        <span>Data Master</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-light py-2 collapse-inner rounded">
+                            <a class="collapse-item " href="{{ route('menu.index') }}"> Master Menu</a>
+                            <a class="collapse-item " href="{{ route('pelanggan.index') }}"> Master Pelanggan</a>
+                            <a class="collapse-item " href="{{ route('akun.index') }}"> Master Akun</a>
+                            <a class="collapse-item " href="{{ route('setting.transaksi') }}"> Master Setting Akun</a>
+                        </div>
                     </div>
-                </div>
 
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
-                    <i class="fas fa-fw fa-folder-open"></i>
-                    <span>Transaksi</span>
-                </a>
-                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{route('pemesanan.transaksi')}}"> Pemesanan</a>
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{route('penjualan.transaksi')}}"> Penjualan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+                        aria-expanded="true" aria-controls="collapsePages1">
+                        <i class="fas fa-comments-dollar"></i>
+                        <span>Transaksi</span>
+                    </a>
+                    <div id="collapsePages1" class="collapse" aria-labelledby="headingPages"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('pemesanan.transaksi') }}"> Pemesanan</a>
+                            <a class="collapse-item" href="{{ route('penjualan.transaksi') }}"> Penjualan</a>
+                        </div>
                     </div>
-                </div>
                 @endrole
             </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
-                    <i class="fas fa-fw fa-folder-open"></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+                    aria-expanded="true" aria-controls="collapsePages2">
+                    <i class="far fa-calendar-alt"></i>
                     <span>Laporan</span>
                 </a>
-                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('laporan.penjualan') }}"> Laporan Penjualan</a>
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('laporan.index') }}"> Jurnal Penjualan</a>
+                        <a class="collapse-item " href="{{ route('laporan.penjualan') }}"> Laporan Penjualan</a>
+                        <a class="collapse-item " href="{{ route('laporan.index') }}"> Jurnal Penjualan</a>
                     </div>
                 </div>
 
@@ -128,6 +136,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+                    SATE MARANGGI SI BUNGSU
 
 
 
@@ -136,14 +145,18 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -157,18 +170,22 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle" src="{{asset('asset/img/avatar2.png')}}">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                    <i class="fas fa-user-cog"></i>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -195,7 +212,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Sate Maranggi Si Bungsu Subang<br>Copyright &copy; Your Website 2024</span>
+                        <span>Sate Maranggi Si Bungsu Subang &copy;2024</span>
                     </div>
                 </div>
             </footer>
@@ -213,7 +230,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -224,7 +242,8 @@
                 </div>
                 <div class="modal-body">Pilih "Logout" apabila ingin keluar aplikasi</div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -237,24 +256,25 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="asset/vendor/jquery/jquery.min.js"></script>
-    <script src="asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/asset/vendor/jquery/jquery.min.js"></script>
+    <script src="/asset/js/table.js"></script>
+    <script src="/asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="asset/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/asset/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="asset/js/sb-admin-2.min.js"></script>
+    <script src="/asset/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="asset/vendor/chart.js/Chart.min.js"></script>
-    <script src="asset/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="asset/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/asset/vendor/chart.js/Chart.min.js"></script>
+    <script src="/asset/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/asset/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="asset/js/demo/chart-area-demo.js"></script>
-    <script src="asset/js/demo/chart-pie-demo.js"></script>
-    <script src="asset/js/demo/datatables-demo.js"></script>
+    <script src="/asset/js/demo/chart-area-demo.js"></script>
+    <script src="/asset/js/demo/chart-pie-demo.js"></script>
+    <script src="/asset/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
