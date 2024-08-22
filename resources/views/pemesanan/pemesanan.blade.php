@@ -3,7 +3,19 @@
 @section('content')
     @include('sweetalert::alert')
 
-    <div class="container">
+    @php
+    function formatMenuName($string) {
+    // Cari angka dalam string
+    if (preg_match('/(\d+)$/', $string, $matches)) {
+        $price = $matches[1];
+        $name = preg_replace('/\d+$/', '', $string);
+        return $name . ' (' . number_format($price) . ')';
+    }
+    return $string; // Jika tidak ada angka, kembalikan string apa adanya
+}
+
+    @endphp
+    <div class="container mt-4">
         <!-- Page Heading -->
         <div class="card mb-4">
             <div class="card-body d-flex justify-content-between align-items-center">
@@ -12,33 +24,44 @@
         </div>
 
         <hr>
-        <div class="container mt-8">
+        <div class="container mt-4">
             <div class="row justify-content-center">
-                <div class="col-md-10">
+                <div class="col-14 col-md-12">
                     <div class="card mb-4">
                         <div class="card-body">
                             <form action="/detail/simpan" method="POST">
                                 @csrf
                                 <div class="row mb-3">
-                                    <div class="col-md-4">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="no_pesan">No Faktur</label>
                                             <input type="text" name="no_pesan" value="{{ $formatnya }}" class="form-control" id="no_pesan" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="tgl">Tanggal Transaksi</label>
                                             <input type="date" name="tgl" id="tgl" class="form-control" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="kd_pel">Pelanggan</label>
                                             <select name="kd_pel" id="kd_pel" class="form-control" required>
                                                 <option value="">Pilih</option>
                                                 @foreach ($pelanggan as $pel)
                                                     <option value="{{ $pel->kd_pel }}">{{ $pel->nm_pel }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="metode_pembayaran">Metode Pembayaran</label>
+                                            <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" required>
+                                                <option value="">Pilih Metode Pembayaran</option>
+                                                @foreach ($metodePembayaran as $metode)
+                                                    <option value="{{ $metode->nama }}">{{ $metode->nama }} - {{$metode->status}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -53,19 +76,16 @@
                                         <button type="button" class="btn btn-info btn-sm" onclick="window.location.href='/pelanggan'">
                                             <i class="fas fa-plus"></i> Tambah Pelanggan
                                         </button>
-
                                     </div>
-
-
 
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table table-bordered" id="dataTable">
                                                 <thead class="thead-light">
                                                     <tr class="text-center">
-                                                        <th>Kode Menu</th>
-                                                        <th>Nama Menu</th>
-                                                        <th>Quantity</th>
+                                                        <th>Kode</th>
+                                                        <th>Nama</th>
+                                                        <th>Jumlah</th>
                                                         <th>Sub Total</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -80,14 +100,14 @@
                                                             </td>
                                                             <td>
                                                                 <input name="nm_mnu[]" type="hidden" value="{{ $temp->nm_mnu }}" readonly>
-                                                                {{ $temp->nm_mnu }}
+                                                                {!! formatMenuName($temp->nm_mnu) !!}
                                                             </td>
                                                             <td>
                                                                 <input name="qty_pesan[]" type="hidden" value="{{ $temp->qty_pesan }}" readonly>
                                                                 {{ $temp->qty_pesan }}
                                                             </td>
                                                             <td>
-                                                                <input name="sub_total[]" type="hidden" value="{{ $temp->sub_total }}" readonly>
+                                                                Rp,<input name="sub_total[]" type="hidden" value="{{ $temp->sub_total }}" readonly>
                                                                 {{ number_format($temp->sub_total) }}
                                                             </td>
                                                             <td class="text-center">
@@ -99,8 +119,9 @@
                                                         @php($total += $temp->sub_total)
                                                     @endforeach
                                                     <tr class="text-center">
-                                                        <td colspan="3">Total</td>
-                                                        <td>
+                                                        <td colspan="3" style="font-size: 1.5rem;">Total</td>
+                                                        <td style="font-size: 1.5rem;">
+                                                            Rp.
                                                             <input name="total" type="hidden" value="{{ $total }}">
                                                             {{ number_format($total) }}
                                                         </td>
@@ -113,6 +134,7 @@
                                             <button type="submit" class="btn btn-info">Simpan Pemesanan</button>
                                         </div>
                                     </div>
+
                                 </div>
                             </form>
                         </div>
@@ -120,10 +142,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- Form -->
-
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
@@ -144,15 +162,13 @@
                                 <select name="mnu" id="mnu" class="form-control" required>
                                     <option value="">Pilih</option>
                                     @foreach ($menu as $product)
-                                        <option value="{{ $product->kd_mnu }}">{{ $product->kd_mnu }} -
-                                            {{ $product->nm_mnu }} - Rp {{ number_format($product->harga) }}</option>
+                                        <option value="{{ $product->kd_mnu }} ">{{ $product->kd_mnu }} - {{ $product->nm_mnu }} - Rp {{ number_format($product->harga) }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="qty">Jumlah</label>
-                                <input type="number" min="1" name="qty" id="qty" class="form-control"
-                                    required>
+                                <input type="number" min="1" name="qty" id="qty" class="form-control" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -164,4 +180,18 @@
             </div>
         </div>
     </div>
+
+    <!-- Additional CSS for Responsiveness -->
+    <style>
+        @media (max-width: 768px) {
+            .table-responsive {
+                overflow-x: auto; /* Ensure table can scroll horizontally on small screens */
+            }
+
+            .table th, .table td {
+                white-space: nowrap; /* Prevent text wrapping inside table cells */
+                font-size: 0.9rem; /* Adjust font size for smaller screens */
+            }
+        }
+    </style>
 @endsection

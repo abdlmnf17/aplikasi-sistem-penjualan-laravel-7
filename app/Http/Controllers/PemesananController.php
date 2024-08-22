@@ -8,6 +8,7 @@ use App\Pelanggan;
 use App\Pemesanan;
 use App\Pemesanan_tem;
 use App\Temp_pesan;
+use App\MetodePembayaran;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PemesananController extends Controller
@@ -17,8 +18,13 @@ class PemesananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+   
+
     public function index()
     {
+        $metodePembayaran = MetodePembayaran::all();
         $akun = \App\Akun::All();
         $menu = \App\Menu::All();
         $pelanggan = \App\Pelanggan::All();
@@ -36,7 +42,8 @@ class PemesananController extends Controller
                 'akun' => $akun,
                 'pelanggan' => $pelanggan,
                 'temp_pemesanan' => $temp_pesan,
-                'formatnya' => $formatnya
+                'formatnya' => $formatnya,
+                'metodePembayaran' => $metodePembayaran
             ]
         );
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Akun extends Migration
+class CreateMetodePembayaranTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class Akun extends Migration
      */
     public function up()
     {
-        Schema::create('akun', function (Blueprint $table){
-            $table->string('no_akun')->primary();
-            $table->string('nm_akun');
-            $table->integer('saldo')->nullable();
+        Schema::create('metode_pembayaran', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('status');
+            $table->integer('saldo');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ class Akun extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('metode_pembayaran');
     }
 }

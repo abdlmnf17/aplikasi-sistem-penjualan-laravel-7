@@ -1,31 +1,44 @@
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>Nota Sate Maranggi Si Bungsu </title>
+    <title>Nota Sate Maranggi Si Bungsu</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
         .invoice-box {
-            max-width: 400px;
+            max-width: 450px;
             margin: auto;
-            padding: 30px;
-            border: 1px solid #eee;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            padding: 25x;
+            border: 10px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
             font-size: 15px;
-            line-height: 20px;
-            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
             color: #555;
+        }
+
+        .invoice-box pre {
+            white-space: pre-wrap; /* Ensure text wraps */
+            margin: 0;
+            padding: 0;
         }
 
         .invoice-box table {
             width: 100%;
-            line-height: normal;
-            /* inherit */
+            line-height: 1.4;
             text-align: left;
+            border-collapse: collapse; /* Ensures borders between cells merge */
         }
 
         .invoice-box table td {
-            padding: 5px;
+            padding: 8px;
             vertical-align: top;
+            font-family: 'Courier New', Courier, monospace; /* Ensures monospace font for table content */
         }
 
         .invoice-box table tr td:nth-child(2) {
@@ -33,27 +46,23 @@
         }
 
         .invoice-box table tr.top table td {
-            padding-bottom: 10px;
+            padding-bottom: 20px;
         }
 
         .invoice-box table tr.top table td.title {
-            font-size: 30px;
-            line-height: 45px;
+            font-size: 24px;
+            line-height: 36px;
             color: #333;
         }
 
         .invoice-box table tr.information table td {
-            padding-bottom: 40px;
+            padding-bottom: 20px;
         }
 
         .invoice-box table tr.heading td {
-            background: #eee;
+            background: #f3f3f3;
             border-bottom: 1px solid #ddd;
             font-weight: bold;
-        }
-
-        .invoice-box table tr.details td {
-            padding-bottom: 20px;
         }
 
         .invoice-box table tr.item td {
@@ -69,32 +78,19 @@
             font-weight: bold;
         }
 
-        @media only screen and (max-width: 600px) {
-            .invoice-box table tr.top table td {
-                width: 100%;
-                display: block;
-                text-align: center;
-            }
+        .invoice-box table tr.footer td {
+            text-align: center;
+            padding-top: 20px;
+            font-style: italic;
+        }
 
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td,
             .invoice-box table tr.information table td {
                 width: 100%;
                 display: block;
                 text-align: center;
             }
-        }
-
-        /** RTL **/
-        .rtl {
-            direction: rtl;
-            font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sansserif;
-        }
-
-        .rtl table {
-            text-align: right;
-        }
-
-        .rtl table tr td:nth-child(2) {
-            text-align: left;
         }
     </style>
 </head>
@@ -107,10 +103,10 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="asset/img/sate.png" width="200px">
-
+                                <pre><img src="asset/img/sate.png" width="200" alt="Logo"></pre>
+                            </td>
                             <td>
-                                No pesanan : <strong>#{{ $noorder }}</strong><br>
+                                <pre>No Pesanan: #{{ $noorder }}</pre>
                             </td>
                         </tr>
                     </table>
@@ -119,42 +115,47 @@
             <tr class="information">
                 <td colspan="2">
                     <table>
-                        <td>
-                            @foreach ($order as $pesan)
-                                @foreach ($pel as $pe)
-                                    @if ($pesan->kd_pel == $pe->kd_pel)
-                                        <br>{{ $pe->nm_pel }}<br>
-                        </td>
-                        @endif
-                        @endforeach
-                        @endforeach
+                        <tr>
+                            <td>
+                                <pre><strong>Nama Pelanggan:</strong></pre>
+                                @foreach ($order as $pesan)
+                                    @foreach ($pel as $pe)
+                                        @if ($pesan->kd_pel == $pe->kd_pel)
+                                            <pre>{{ $pe->nm_pel }}</pre>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </td>
+                            <td>
+                                <pre><strong>Metode Pembayaran:</strong></pre>
+                                @foreach ($detailpesan as $m)
+                                    <pre>{{ $m->metode_pembayaran }}</pre>
+                                @endforeach
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>
             <tr class="heading">
-                <td>Produk</td>
-                <td>Subtotal</td>
+                <td><pre>Produk</pre></td>
+                <td><pre>Subtotal</pre></td>
             </tr>
             @php($total = 0)
             @foreach ($detail as $row)
                 <tr class="item">
                     <td>
-                        {{ $row->nm_mnu }}<br>
-                        <strong>Harga</strong>: Rp {{ number_format($row->sub_total / $row->qty_pesan) }} x
-                        {{ $row->qty_pesan }}
+                        <pre>{{ $row->nm_mnu }}<br>Harga: Rp {{ number_format($row->sub_total / $row->qty_pesan) }} x {{ $row->qty_pesan }}</pre>
                     </td>
-                    <td>Rp {{ number_format($row->sub_total) }}</td>
+                    <td><pre>Rp {{ number_format($row->sub_total) }}</pre></td>
                 </tr>
                 @php($total += $row->sub_total)
             @endforeach
             <tr class="total">
-                <td></td>
-                <td>
-                    Total: Rp {{ number_format($total) }}
-                </td>
+                <td><pre>Total</pre></td>
+                <td><pre>Rp {{ number_format($total) }}</pre></td>
             </tr>
-            <tr>
-                <td colspan="3">Semoga Datang Kembali</td>
+            <tr class="footer">
+                <td colspan="2"><pre>Terima kasih atas pembeliannya - Semoga datang kembali :)</pre></td>
             </tr>
         </table>
     </div>

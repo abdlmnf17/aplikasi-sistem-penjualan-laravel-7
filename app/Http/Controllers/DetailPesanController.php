@@ -22,10 +22,12 @@ class DetailPesanController extends Controller
         $kd_mnu = $request->kd_mnu;
         $qty = $request->qty_pesan;
         $sub_total = $request->sub_total;
+
         foreach ($kd_mnu as $key => $no) {
             $input['no_pesan'] = $request->no_pesan;
             $input['kd_mnu'] = $kd_mnu[$key];
             $input['qty_pesan'] = $qty[$key];
+            $input['metode_pembayaran'] = $request->metode_pembayaran;
             $input['subtotal'] = $sub_total[$key];
             DetailPesan::insert($input);
         }

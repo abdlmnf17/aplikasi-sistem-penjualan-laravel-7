@@ -46,6 +46,7 @@ Route::post('/detail/store', 'DetailPesanController@store');
 Route::post('/detail/simpan', 'DetailPesanController@simpan');
 //Penjualan
 Route::get('/penjualan', 'PenjualanController@index')->name('penjualan.transaksi');
+Route::get('/daftar-penjualan', 'PenjualanController@invoice')->name('penjualan.invoice');
 Route::get('/penjualan-jual/{id}', 'PenjualanController@edit');
 Route::post('/penjualan/simpan', 'PenjualanController@simpan');
 //Cetak Nota
@@ -56,6 +57,8 @@ Route::resource( '/laporan' , 'LaporanController');
 Route::get('/laporancetak/cetak_pdf', 'LaporanController@cetak_pdf');
 //laporan Penjualan
 Route::resource( '/laporan' , 'LaporanController');
+
+Route::resource('metodepembayaran', MetodePembayaranController::class);
 
 Route::get('/laporanpenjualan', [LaporanPenjualanController::class, 'index'])->name('laporan.penjualan');
 

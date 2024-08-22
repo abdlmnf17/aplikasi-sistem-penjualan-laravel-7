@@ -7,7 +7,7 @@
         <!-- Page Heading -->
         <div class="card mb-4">
             <div class="card-body d-flex justify-content-between align-items-center">
-                <h1 class="h3 mb-0 text-gray-800">Transaksi Penjualan</h1>
+                <h1 class="h3 mb-0 text-gray-800">Detail Transaksi Penjualan</h1>
             </div>
         </div>
         <hr>
@@ -17,6 +17,24 @@
             @csrf
 
             <div class="row justify-content-center mb-4">
+                @foreach ($pemesanan as $psn)
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="nama">Nama Pelanggan</label>
+                            <input type="text" name="nama" value="{{ $psn->nama_pelanggan }}" class="form-control" id="nama">
+                        </div>
+                    </div>
+                @endforeach
+
+                @foreach ($metode as $m)
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="metode">Metode Pembayaran</label>
+                            <input type="text" name="metode" value="{{ $m->metode_pembayaran }}" class="form-control" id="metode">
+                        </div>
+                    </div>
+                @endforeach
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="no_faktur">No Penjualan</label>
@@ -58,7 +76,6 @@
                                     <th>Nama Menu</th>
                                     <th>Quantity</th>
                                     <th>Sub Total</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,11 +96,6 @@
                                             <input name="sub_jual[]" type="hidden" value="{{ $temp->sub_total }}" readonly>
                                             Rp. {{ number_format($temp->sub_total) }}
                                         </td>
-                                        <td class="text-center">
-                                            <a href="/transaksi/hapus/{{ $temp->kd_mnu }}" onclick="return confirm('Yakin ingin menghapus data?')" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash-alt"></i> Hapus
-                                            </a>
-                                        </td>
                                     </tr>
                                     @php($total += $temp->sub_total)
                                 @endforeach
@@ -93,7 +105,6 @@
                                         <input name="total" type="hidden" value="{{ $total }}">
                                         Rp. {{ number_format($total) }}
                                     </td>
-                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>

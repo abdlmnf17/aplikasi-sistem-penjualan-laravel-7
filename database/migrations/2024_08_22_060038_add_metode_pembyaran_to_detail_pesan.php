@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
-class Akun extends Migration
+class AddMetodePembyaranToDetailPesan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +14,7 @@ class Akun extends Migration
      */
     public function up()
     {
-        Schema::create('akun', function (Blueprint $table){
-            $table->string('no_akun')->primary();
-            $table->string('nm_akun');
-            $table->integer('saldo')->nullable();
-        });
+        DB::statement('ALTER TABLE detail_pesan ADD COLUMN metode_pembayaran VARCHAR(255) DEFAULT "tunai" AFTER qty_pesan');
     }
 
     /**
@@ -27,6 +24,8 @@ class Akun extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('detail_pesan', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -11,13 +11,25 @@
     <title>Beranda</title>
 
     <link href="{{ asset('asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
+    {{-- <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <!-- Custom styles for this template-->
+        rel="stylesheet"> --}}
+
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template--> --}}
+
+    <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link href="{{ asset('asset/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+    <style>
+        body {
+            font-family: 'Product Sans', sans-serif;
+        }
+    </style>
 
 </head>
 
@@ -33,7 +45,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-0">
                 </div>
-                <img src="{{ asset('/asset/img/sate.png')}}" width="100" height="40">
+                <img src="{{ asset('/asset/img/sate.png') }}" width="100" height="40">
             </a>
 
             <!-- Divider -->
@@ -72,10 +84,11 @@
                     </a>
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-light py-2 collapse-inner rounded">
-                            <a class="collapse-item " href="{{ route('menu.index') }}"> Master Menu</a>
-                            <a class="collapse-item " href="{{ route('pelanggan.index') }}"> Master Pelanggan</a>
-                            <a class="collapse-item " href="{{ route('akun.index') }}"> Master Akun</a>
-                            <a class="collapse-item " href="{{ route('setting.transaksi') }}"> Master Setting Akun</a>
+                            <a class="collapse-item " href="{{ route('menu.index') }}">Menu</a>
+                            <a class="collapse-item " href="{{ route('metodepembayaran.index') }}">Metode Pembayaran</a>
+                            <a class="collapse-item " href="{{ route('pelanggan.index') }}">Pelanggan</a>
+                            <a class="collapse-item " href="{{ route('akun.index') }}">Akun</a>
+                            <a class="collapse-item " href="{{ route('setting.transaksi') }}">Setting Akun</a>
                         </div>
                     </div>
 
@@ -91,6 +104,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="{{ route('pemesanan.transaksi') }}"> Pemesanan</a>
                             <a class="collapse-item" href="{{ route('penjualan.transaksi') }}"> Penjualan</a>
+                            <a class="collapse-item" href="{{ route('penjualan.invoice') }}"> Invoice Penjualan</a>
                         </div>
                     </div>
                 @endrole
@@ -174,7 +188,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                    <i class="fas fa-user-cog"></i>
+                                <i class="fas fa-user-cog"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

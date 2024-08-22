@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pelanggan extends Model
 {
-    
+
     //jika tidak di definisikan, maka primary akan terdetek id
     protected $primaryKey = 'kd_pel';
     public $incrementing = false;
@@ -14,4 +14,8 @@ class Pelanggan extends Model
     public $timestamps = false;
     protected $table = "pelanggan";
     protected $fillable = ['kd_pel', 'nm_pel', 'telepon'];
+    public function pemesanans()
+    {
+        return $this->hasMany(Pemesanan::class, 'kd_pel', 'kd_pel');
+    }
 }

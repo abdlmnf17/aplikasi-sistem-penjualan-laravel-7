@@ -11,5 +11,5 @@ class DetailPesan extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     protected $table = "detail_pesan";
-    protected $fillable = ['no_pesan', 'kd_mnu', 'qty_mnu', 'subtotal'];
+    protected $fillable = ['no_pesan', 'kd_mnu', 'qty_mnu', 'metode_pembayaran', 'subtotal'];
 }

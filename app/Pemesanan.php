@@ -13,4 +13,11 @@ class Pemesanan extends Model
     public $timestamps = false;
     protected $table = "pemesanan";
     protected $fillable = ['no_pesan', 'tgl_pesan', 'total', 'kd_pel'];
+    public function pelanggan()
+    {
+        return $this->belongsTo(Pelanggan::class, 'kd_pel', 'kd_pel');
+    }
+
+    
+
 }
