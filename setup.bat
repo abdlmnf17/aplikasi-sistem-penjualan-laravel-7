@@ -10,13 +10,7 @@ if %errorlevel% neq 0 (
     exit /b %errorlevel%
 )
 
-:: Menginstal dependensi
-echo Mengunduh dependensi, harap tunggu...
-composer install
-if %errorlevel% neq 0 (
-    echo Gagal mengunduh dependensi
-    exit /b %errorlevel%
-)
+
 
 :: Menghasilkan kunci aplikasi
 echo Menghasilkan kunci aplikasi...

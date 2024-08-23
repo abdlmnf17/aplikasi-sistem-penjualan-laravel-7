@@ -28,6 +28,6 @@ Untuk mempermudah setup aplikasi Laravel, kami menyediakan skrip batch yang akan
    Setelah mengunduh/meng-clone repositori ini, buka Command Prompt dan navigasikan ke direktori proyek . Kemudian, jalankan skrip setup dengan mengetikkan:
 
    ```cmd
-   setup.bat
+   .\setup.bat
 
   

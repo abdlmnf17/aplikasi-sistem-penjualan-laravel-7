@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 
-class CreateViews extends Migration
+class CreateViwsTable extends Migration
 {
     /**
      * Run the migrations.
