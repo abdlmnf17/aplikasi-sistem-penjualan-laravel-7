@@ -4,7 +4,14 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="cardheader">Laporan Jurnal Penjualan</div>
+                <div class="card mb-4">
+                    <!-- Logo Perusahaan dan Keterangan -->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+
+                        <h4 class="text-muted">Laporan Jurnal</h4>
+                    </div>
+                </div>
                 <div class="card-body">
                     <form action="/laporan/cetak" method="PUT" target="_blank">
                         @csrf
@@ -29,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="col-md-10">
-                                <input type="submit" class="btn btn-success btn-send" value="Cetak">
+                                <input type="submit" class="btn btn-info btn-send" value="Cetak">
                             </div>
                         </fieldset>
                     </form>

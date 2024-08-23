@@ -4,7 +4,14 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="cardheader">Laporan Penjualan</div>
+                <div class="card mb-4">
+                    <!-- Logo Perusahaan dan Keterangan -->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+
+                        <h4 class="text-muted">Laporan Penjualan</h4>
+                    </div>
+                </div>
                 <div class="card-body">
                     <form action="{{ route('laporan.penjualancetak') }}" method="get">
                         <label for="tanggal_awal">Tanggal Awal:</label>
@@ -13,7 +20,7 @@
                         <label for="tanggal_akhir">Tanggal Akhir:</label>
                         <input type="date" id="tanggal_akhir" name="tanggal_akhir">
 
-                        <button type="submit" class="btn btn-success btn-send">Tampilkan Laporan</button>
+                        <button type="submit" class="btn btn-info btn-send">Tampilkan Laporan</button>
                     </form>
 
                 </div>

@@ -8,10 +8,10 @@
     <meta name="description" content="Sate Maranggi Si Bungsu">
     <meta name="author" content="SIA">
 
-    <title>Beranda</title>
+    <title>Sate Maranggi Si Bungsu</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="{{ asset('asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     {{-- <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet"> --}}
@@ -22,8 +22,9 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link href="{{ asset('asset/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/asset/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/asset/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
     <style>
@@ -68,7 +69,7 @@
         <ul class="navbar-nav bg-info text-light sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-0">
                 </div>
                 <img src="{{ asset('/asset/img/sate.png') }}" width="100" height="40">
@@ -151,6 +152,15 @@
                 </div>
 
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="modal"
+                data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt"></i>
+                    <span>Keluar</span>
+                </a>
+
+
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -219,15 +229,12 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal"
                                     data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Keluar
                                 </a>
                             </div>
                         </li>
@@ -282,7 +289,7 @@
                 </div>
                 <div class="modal-body">Pilih "Logout" apabila ingin keluar aplikasi</div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                    <a class="btn btn-info" href="{{ route('logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
