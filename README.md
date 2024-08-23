@@ -1,4 +1,4 @@
-# Setup Aplikasi Penjualanb - https://abdulmanap.com
+# Setup Aplikasi Penjualan - https://abdulmanap.com
 
 Berikut adalah langkah-langkah untuk menyiapkan aplikasi ini di lingkungan lokal.
 
