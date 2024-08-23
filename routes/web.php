@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\LaporanPenjualanController;
+use App\Http\Controllers\PemesananController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -57,6 +58,10 @@ Route::resource( '/laporan' , 'LaporanController');
 Route::get('/laporancetak/cetak_pdf', 'LaporanController@cetak_pdf');
 //laporan Penjualan
 Route::resource( '/laporan' , 'LaporanController');
+
+// web.php
+Route::delete('/transaksi/hapus/{kd_mnu}', [PemesananController::class, 'destroy'])->name('transaksi.hapus');
+
 
 Route::resource('metodepembayaran', MetodePembayaranController::class);
 

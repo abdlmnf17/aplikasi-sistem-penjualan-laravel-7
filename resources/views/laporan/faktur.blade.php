@@ -140,7 +140,16 @@
                 <td><pre>Produk</pre></td>
                 <td><pre>Subtotal</pre></td>
             </tr>
-            @php($total = 0)
+
+            @php
+            $total_sub_total = 0;
+            foreach ($detail as $row) {
+                $total_sub_total += $row->sub_total;
+            }
+            $pajak = $total_sub_total * 0.10;
+        @endphp
+
+
             @foreach ($detail as $row)
                 <tr class="item">
                     <td>
@@ -148,14 +157,23 @@
                     </td>
                     <td><pre>Rp {{ number_format($row->sub_total) }}</pre></td>
                 </tr>
-                @php($total += $row->sub_total)
             @endforeach
-            <tr class="total">
-                <td><pre>Total</pre></td>
-                <td><pre>Rp {{ number_format($total) }}</pre></td>
+
+            <tr class="pajak">
+                <td><pre>Pajak (10%)</pre></td>
+                <td><pre>Rp {{ number_format($pajak) }}</pre></td>
             </tr>
+
+            <tr class="total">
+                <td><pre>Total Akhir</pre></td>
+                <td><pre>Rp {{ number_format($total_sub_total + $pajak) }}</pre></td>
+            </tr>
+
+
+
+
             <tr class="footer">
-                <td colspan="2"><pre>Terima kasih atas pembeliannya - Semoga datang kembali :)</pre></td>
+                <td colspan="2"><pre>Terima kasih atas pembeliannya - have a nice day :)</pre></td>
             </tr>
         </table>
     </div>

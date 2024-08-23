@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label for="saldo">Saldo</label>
-                    <input type="number" name="saldo" id="saldo" class="form-control" value="{{ old('saldo', $metode->saldo) }}" min="0" step="0.01" required>
+                    <input type="number" name="saldo" id="saldo" class="form-control" value="{{ old('saldo', $metode->saldo) }}" min="0" step="0.01" readonly>
                     @error('saldo')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror

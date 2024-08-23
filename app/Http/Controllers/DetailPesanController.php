@@ -15,7 +15,7 @@ class DetailPesanController extends Controller
         $tambah_pemesanan = new \App\Pemesanan;
         $tambah_pemesanan->no_pesan = $request->no_pesan;
         $tambah_pemesanan->tgl_pesan = $request->tgl;
-        $tambah_pemesanan->total = $request->total;
+        $tambah_pemesanan->total = $request->total_akhir;
         $tambah_pemesanan->kd_pel = $request->kd_pel;
         $tambah_pemesanan->save();
         //Simpan data ke table detail pesan

@@ -9,6 +9,7 @@
     <meta name="author" content="SIA">
 
     <title>Beranda</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ asset('asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     {{-- <link
@@ -28,6 +29,31 @@
     <style>
         body {
             font-family: 'Product Sans', sans-serif;
+        }
+        .summary {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+        }
+        .summary-item:last-child {
+            border-bottom: 0;
+        }
+        .summary-item .label {
+            font-size: 1.5rem;
+        }
+        .summary-item .amount {
+            font-size: 1.5rem;
+        }
+        .highlight {
+            text-decoration: underline;
         }
     </style>
 
@@ -150,7 +176,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    SATE MARANGGI SI BUNGSU
+                    <strong>SATE MARANGGI SI BUNGSU</strong>
 
 
 

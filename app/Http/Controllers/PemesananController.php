@@ -20,7 +20,7 @@ class PemesananController extends Controller
      */
 
 
-   
+
 
     public function index()
     {
@@ -69,20 +69,63 @@ class PemesananController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        if (Pemesanan_tem::where('kd_mnu', $request->mnu)->exists()) {
-            Alert::warning('Pesan ', 'barang sudah ada.. QTY akan terupdate ?');
-            Pemesanan_tem::where('kd_mnu', $request->mnu)->update(['qty_pesan' => $request->qty]);
-            return redirect('transaksi');
-        } else {
-            Pemesanan_tem::create([
-                'qty_pesan' => $request->qty,
-                'kd_mnu' => $request->mnu
-            ]);
-            return redirect('transaksi');
-        }
+
+
+     public function store(Request $request)
+{
+    $menu = Menu::find($request->mnu);
+
+    if (!$menu) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Menu tidak ditemukan.',
+        ]);
     }
+
+    $existingItem = Pemesanan_tem::where('kd_mnu', $request->mnu)->first();
+
+    if ($existingItem) {
+        // Update existing item
+        $existingItem->update([
+            'qty_pesan' => $request->qty,
+            'sub_total' => $request->qty * $menu->harga
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Barang sudah ada. QTY diperbarui.',
+            'data' => [
+                'kd_mnu' => $existingItem->kd_mnu,
+                'nm_mnu' => $menu->nm_mnu,
+                'qty_pesan' => $request->qty,
+                'sub_total' => $request->qty * $menu->harga
+            ]
+        ]);
+    } else {
+        // Create new item
+        $newItem = Pemesanan_tem::create([
+            'qty_pesan' => $request->qty,
+            'kd_mnu' => $request->mnu,
+            'nm_mnu' => $menu->nm_mnu,
+            'harga' => $menu->harga,
+            'sub_total' => $request->qty * $menu->harga
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Menu ditambahkan.',
+            'data' => [
+                'kd_mnu' => $newItem->kd_mnu,
+                'nm_mnu' => $menu->nm_mnu,
+                'qty_pesan' => $request->qty,
+                'sub_total' => $request->qty * $menu->harga
+            ]
+        ]);
+    }
+}
+
+
+
 
 
     /**
@@ -127,9 +170,16 @@ class PemesananController extends Controller
      */
     public function destroy($kd_mnu)
     {
-        $menu = \App\Pemesanan_tem::findOrFail($kd_mnu);
-        $menu->delete();
-        Alert::success('Pesan ', 'Data berhasil dihapus');
-        return redirect('transaksi');
+        try {
+            $menu = \App\Pemesanan_tem::where('kd_mnu', $kd_mnu)->firstOrFail();
+            $menu->delete();
+
+            // Jika penghapusan berhasil
+            return response()->json(['success' => true, 'message' => 'Data berhasil dihapus']);
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan
+            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menghapus data']);
+        }
     }
+
 }
