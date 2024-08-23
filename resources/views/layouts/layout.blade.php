@@ -8,7 +8,7 @@
     <meta name="description" content="Sate Maranggi Si Bungsu">
     <meta name="author" content="SIA">
 
-    <title>Sate Maranggi Si Bungsu</title>
+    <title>Sate Maranggi Si Bungsu Subang</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ asset('/asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
