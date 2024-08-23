@@ -186,7 +186,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <strong>SATE MARANGGI SI BUNGSU</strong>
+                    <strong>SATE MARANGGI SI BUNGSU SUBANG</strong>
 
 
 
